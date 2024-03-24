@@ -11,20 +11,20 @@ export class CommentsService {
   ) {}
 
   async findAll(): Promise<Comment[]> {
-    return this.commentRepository.find();
+    return await this.commentRepository.find();
   }
 
   async findOne(id: number): Promise<Comment> {
-    return this.commentRepository.findOneBy({ id });
+    return await this.commentRepository.findOneBy({ id });
   }
 
   async create(comment: Comment): Promise<Comment> {
-    return this.commentRepository.save(comment);
+    return await this.commentRepository.save(comment);
   }
 
   async update(id: number, comment: Comment): Promise<Comment> {
     await this.commentRepository.update(id, comment);
-    return this.commentRepository.findOneBy({ id });
+    return await this.commentRepository.findOneBy({ id });
   }
 
   async delete(id: number): Promise<void> {

@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IsNotEmpty, Length } from 'class-validator';
 
 @Entity()
 export class Task {
@@ -6,6 +7,8 @@ export class Task {
   id: number;
 
   @Column()
+  @IsNotEmpty()
+  @Length(0, 50)
   title: string;
 
   @Column({ nullable: true })

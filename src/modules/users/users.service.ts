@@ -14,20 +14,23 @@ export class UsersService {
   ) {}
 
   async findAll(): Promise<User[]> {
-    return this.userRepository.find({ relations: ['role'] });
+    return await this.userRepository.find({ relations: ['role'] });
   }
 
   async findOne(id: number): Promise<User> {
-    return this.userRepository.findOne({ where: { id }, relations: ['role'] });
+    return await this.userRepository.findOne({
+      where: { id },
+      relations: ['role'],
+    });
   }
 
   async create(user: User): Promise<User> {
-    return this.userRepository.save(user);
+    return await this.userRepository.save(user);
   }
 
   async update(id: number, user: User): Promise<User> {
     await this.userRepository.update(id, user);
-    return this.findOne(id);
+    return await this.findOne(id);
   }
 
   async delete(id: number): Promise<void> {
@@ -35,6 +38,6 @@ export class UsersService {
   }
 
   async findRole(name: string): Promise<Role> {
-    return this.roleRepository.findOne({ where: { name } });
+    return await this.roleRepository.findOne({ where: { name } });
   }
 }

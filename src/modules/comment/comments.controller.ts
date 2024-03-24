@@ -16,17 +16,17 @@ export class CommentsController {
 
   @Get()
   async findAll(): Promise<Comment[]> {
-    return this.commentsService.findAll();
+    return await this.commentsService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Comment> {
-    return this.commentsService.findOne(id);
+    return await this.commentsService.findOne(id);
   }
 
   @Post()
   async create(@Body() comment: Comment): Promise<Comment> {
-    return this.commentsService.create(comment);
+    return await this.commentsService.create(comment);
   }
 
   @Put(':id')
@@ -34,11 +34,11 @@ export class CommentsController {
     @Param('id') id: number,
     @Body() comment: Comment,
   ): Promise<Comment> {
-    return this.commentsService.update(id, comment);
+    return await this.commentsService.update(id, comment);
   }
 
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<void> {
-    return this.commentsService.delete(id);
+    await this.commentsService.delete(id);
   }
 }

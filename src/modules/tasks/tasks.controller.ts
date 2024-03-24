@@ -16,26 +16,26 @@ export class TasksController {
 
   @Get()
   async findAll(): Promise<Task[]> {
-    return this.tasksService.findAll();
+    return await this.tasksService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Task> {
-    return this.tasksService.findOne(id);
+    return await this.tasksService.findOne(id);
   }
 
   @Post()
   async create(@Body() task: Task): Promise<Task> {
-    return this.tasksService.create(task);
+    return await this.tasksService.create(task);
   }
 
   @Put(':id')
   async update(@Param('id') id: number, @Body() task: Task): Promise<Task> {
-    return this.tasksService.update(id, task);
+    return await this.tasksService.update(id, task);
   }
 
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<void> {
-    return this.tasksService.delete(id);
+    await this.tasksService.delete(id);
   }
 }

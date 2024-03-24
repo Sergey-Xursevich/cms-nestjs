@@ -17,30 +17,30 @@ export class UsersController {
 
   @Get()
   async findAll(): Promise<User[]> {
-    return this.usersService.findAll();
+    return await this.usersService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<User> {
-    return this.usersService.findOne(id);
+    return await this.usersService.findOne(id);
   }
 
   @Post()
   async create(@Body() user: User): Promise<User> {
     const role = await this.usersService.findRole(user.role.name);
     user.role = role;
-    return this.usersService.create(user);
+    return await this.usersService.create(user);
   }
 
   @Put(':id')
   async update(@Param('id') id: number, @Body() user: User): Promise<User> {
     const role = await this.usersService.findRole(user.role.name);
     user.role = role;
-    return this.usersService.update(id, user);
+    return await this.usersService.update(id, user);
   }
 
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<void> {
-    return this.usersService.delete(id);
+    await this.usersService.delete(id);
   }
 }
